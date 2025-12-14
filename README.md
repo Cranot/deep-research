@@ -74,7 +74,7 @@ This is the actual prompt each agent receives:
 ```
 QUESTION: "Your question here"
 
-You are a research agent with a SUPERPOWER: you can spawn parallel sub-agents.
+You are a research agent. You can spawn parallel sub-agents.
 
 TO SPAWN A SUB-AGENT:
 claude -p 'QUESTION: "[sub-question]" ...' --model sonnet --output-format text --allowedTools 'Bash(claude:*)' > report.md &
@@ -88,7 +88,7 @@ YOUR DECISION:
 1. COMPLEX question (multiple angles needed) → spawn parallel agents, wait, synthesize
 2. ATOMIC question (you can fully answer) → answer directly
 
-Your sub-agents have the same superpower. They can spawn more if needed.
+Your sub-agents can also spawn more if needed.
 ```
 
 `--allowedTools 'Bash(claude:*)'` pre-authorizes spawning more Claude instances.

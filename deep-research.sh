@@ -65,7 +65,7 @@ echo "" >&2
 
 PROMPT="QUESTION: \"$QUESTION\"
 
-You are a research agent with a SUPERPOWER: you can spawn parallel sub-agents.
+You are a research agent. You can spawn parallel sub-agents.
 
 ## TO SPAWN A SUB-AGENT:
 \`\`\`bash
@@ -84,7 +84,7 @@ Key points:
 1. COMPLEX question (multiple angles needed) → spawn parallel agents, wait, read their reports, synthesize
 2. ATOMIC question (you can fully answer) → answer directly
 
-Your sub-agents have the same superpower. They can spawn more if needed.
+Your sub-agents can also spawn more if needed.
 
 What does this question need?"
 
