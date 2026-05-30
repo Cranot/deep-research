@@ -1,0 +1,40 @@
+spec_version: "0.1.0"
+name: deep-research
+version: 1.0.0
+description: >
+  Fractal research agent that turns any question into a multi-agent exploration
+  tree. An orchestrator decomposes the question into angles, spawns recursive
+  sub-agents to investigate each angle in parallel, then synthesizes all findings
+  into a single comprehensive report. Supports Claude, Gemini, OpenAI/Azure,
+  OpenRouter, and Kimi providers; four research strategies (recursive,
+  Socratic, perspective-based, grounded/web-verified); and configurable depth,
+  concurrency, and multi-model ensembles.
+license: MIT
+model:
+  preferred: anthropic:claude-opus-4-5
+  fallback:
+    - anthropic:claude-sonnet-4-5
+    - anthropic:claude-haiku-4-5
+    - google:gemini-2.0-flash
+runtime:
+  max_turns: 100
+  tools:
+    - name: spawn_researcher
+      description: Spawn a recursive sub-agent to explore a sub-question in parallel
+    - name: web_search
+      description: Search the web for live, fact-checked information (optional, flag-gated)
+    - name: web_fetch
+      description: Fetch and read a specific URL for grounded research
+skills:
+  - name: recursive_research
+    description: Decompose question into angles, spawn parallel sub-agents, synthesize up the tree
+  - name: socratic
+    description: Challenge assumptions and surface better questions before researching
+  - name: perspective_expander
+    description: Multi-angle analysis with blind spot and tension detection
+  - name: grounded_research
+    description: Web-verified answers using live search and fetch for fact-checking
+compliance:
+  risk_tier: standard
+  supervision:
+    human_in_the_loop: none
