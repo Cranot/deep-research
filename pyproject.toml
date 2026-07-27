@@ -1,0 +1,58 @@
+[project]
+name = "deep-research"
+version = "0.1.0"
+description = "Fractal exploration of any question through recursive AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Dimitris Mitsos (Cranot)" }
+]
+keywords = ["ai", "research", "agents", "claude", "gemini"]
+
+dependencies = [
+    "claude-agent-sdk>=0.1.0",
+    "google-genai[aiohttp]>=1.0.0",
+    "openai>=1.0.0",  # Azure OpenAI + OpenRouter
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",  # cli.py calls load_dotenv() at import time
+    "pyyaml>=6.0",  # core/strategy.py parses YAML strategy definitions
+    "rich>=13.0.0",  # Beautiful terminal output
+    "typer>=0.9.0",  # CLI framework
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.6.0,<1.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+deep-research = "deep_research.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/deep_research"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# Pinned explicitly so CI does not drift when ruff changes its defaults.
+# pycodestyle errors + pyflakes + isort.
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# load_dotenv() must run before the provider modules are imported, so the
+# remaining imports are deliberately below it.
+"src/deep_research/cli.py" = ["E402"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
