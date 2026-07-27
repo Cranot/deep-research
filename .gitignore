@@ -1,9 +1,96 @@
+# ---------------------------------------------------------------------------
+# Credentials -- MUST stay at the top. Never remove.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+*.env.local
+!.env.example
+
 # Project instructions (local only)
 CLAUDE.md
+.claude/settings.local.json
 
-# Research outputs (keep examples/, ignore new runs)
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Type checking
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Research outputs (keep examples/, ignore new runs).
+# Generated reports embed absolute local paths -- never publish new ones.
+reports/
 research/
 
 # Temp files
 *.tmp
 .DS_Store
+.counter
+
+# ---------------------------------------------------------------------------
+# Vendored third-party clones. Separate projects, with their own nested .git
+# directories and their own licences; they must never enter this repo.
+#   libCacheSim/ -- GPL-3.0, ~199 MB, contains files over GitHub's 100 MB limit
+#   hill-cache/  -- MIT (c) liyunfan1223
+# ---------------------------------------------------------------------------
+libCacheSim/
+hill-cache/
+
+# ---------------------------------------------------------------------------
+# Unrelated cache-eviction research that happens to share this directory.
+# Not part of deep-research; do not publish.
+# ---------------------------------------------------------------------------
+bench.py
+wgs_sieve_v2.py
+tune_threshold.py
+breakthroughs/
+
+# Local dev scratch scripts. These need a populated .env with private provider
+# keys and are not part of the published test suite (see tests/).
+test_merge.py
+test_smoke.py
+test_merge_results*.md
+test_merge_ratings*.md
+
+# Local tooling caches / private workflows
+.roam/
+.github/workflows/roam.yml
